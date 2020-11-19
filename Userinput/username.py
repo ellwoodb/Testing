@@ -50,7 +50,7 @@ if password_file_exists is True:
         # class TestApp(Ui_MainWindow):
         #     def __init__(self, window):
         #         self.setupUi(window)
-        #
+
         # app = QtWidgets.QApplication(sys.argv)
         # MainWindow = QtWidgets.QMainWindow()
         #
