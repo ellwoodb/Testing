@@ -128,7 +128,7 @@ async def bound_to(ctx, key):
     id = ctx.author.id
     await main.get_bound_to(ctx, firebase, key, id)
 
-bot.run("Nzc0NjY1MzM5NDU1MDEyODY0.X6bFUQ.zQrSbr9l4mE_xrxGKTYKYiy3VmU")
 
-# 752492641970814986
-# 752492641970815000
+f = open("./token.0", "r", encoding="utf-8")
+TOKEN = f.read()
+bot.run(TOKEN)
