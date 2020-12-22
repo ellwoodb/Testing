@@ -1,0 +1,5 @@
+https://www.gls-pakete.de/sendungsverfolgung?trackingNumber=
+https://www.dhl.de/en/privatkunden/dhl-sendungsverfolgung.html?piececode=
+https://tracking.dpd.de/status/de_DE/parcel/
+
+https://www.parcello.org/tracking?tid=

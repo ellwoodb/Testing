@@ -1,0 +1,15 @@
+{
+"weather": [{
+    "main": "Clouds"
+    }],
+
+"main": {
+    "temp": 278.15, 
+    "temp_min": 277.59, 
+    "temp_max": 278.71
+    },
+
+"wind": {
+    "speed": 3.13
+    }
+}

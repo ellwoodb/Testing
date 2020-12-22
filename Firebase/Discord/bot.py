@@ -5,11 +5,16 @@ from discord.ext import commands
 from firebase import firebase
 from firebase_admin import db, credentials
 import firebase_admin
+import random
+import string
+
+letters = string.ascii_letters
+
 
 firebase = firebase.FirebaseApplication(
     'https://rafflescripts-key.firebaseio.com/', None)
 
-cred = credentials.Certificate('./rafflescripts-key-firebase-adminsdk.json')
+cred = credentials.Certificate('./KEY.json')
 firebase_admin = firebase_admin.initialize_app(
     cred, {'databaseURL': 'https://rafflescripts-key.firebaseio.com/'})
 
@@ -88,6 +93,11 @@ class main():
 
         await ctx.send("Could not find key.")
 
+    def new_key():
+        key = "RS-" + str(''.join(random.choice(letters) for i in range(4))) + "-" + str(''.join(
+            random.choice(letters) for i in range(4))) + "-" + str(''.join(random.choice(letters) for i in range(4)))
+        return key
+
 
 intents = discord.Intents.default()
 intents.members = True
@@ -105,28 +115,25 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    await member.send("hello")
+    await member.send("hi")
+    key = main.new_key()
 
+    ref = db.reference()
+    keys_ref = ref.child('Keys')
+    keys_ref.push({
+        "key": key,
+        "bound_to": "None"
+    })
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send('Hello Friend')
+    channel = bot.get_channel(779334152896905247)
+    await channel.send(f"<@{member.id}> joined. Created key: [ {key} ]")
 
 
 @bot.command(name="auth", aliases=["claim", "bind"])
 @commands.dm_only()
 async def auth(ctx, key):
-    # id = ctx.author.id
-    # await ctx.send(key + " your ID: " + str(id))
-    # await ctx.send(f"<@{id}>")
-    await main.bind(ctx, firebase, key, id)
-
-
-@bot.command(name="whobound", aliases=["boundto"])
-@commands.dm_only()
-async def bound_to(ctx, key):
     id = ctx.author.id
-    await main.get_bound_to(ctx, firebase, key, id)
+    await main.bind(ctx, firebase, key, id)
 
 
 f = open("./token.0", "r", encoding="utf-8")

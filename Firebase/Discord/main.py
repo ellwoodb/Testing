@@ -5,7 +5,7 @@ from firebase import firebase
 firebase = firebase.FirebaseApplication(
     'https://rafflescripts-key.firebaseio.com/', None)
 
-cred = credentials.Certificate('./rafflescripts-key-firebase-adminsdk.json')
+cred = credentials.Certificate('./KEY.json')
 firebase_admin = firebase_admin.initialize_app(
     cred, {'databaseURL': 'https://rafflescripts-key.firebaseio.com/'})
 
